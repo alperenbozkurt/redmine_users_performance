@@ -4,11 +4,13 @@
   <tr>
     <td>Kullanıcı Adı</td>
     <td>Toplam Çalışma Saati</td>
+    <td>Çalışma Yüzdesi</td>
   </tr>
   <% @grouped_time_entries.each do |name, hours| %>
   <tr>
     <td><%= name %></td>
     <td><%= hours %></td>
+    <td>% <%= ((hours / @total_time)*100).round %></td>
   </tr>
   <% end %>
 </table>
