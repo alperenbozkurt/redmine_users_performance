@@ -1,1 +1,14 @@
 <h2>UsersPerformanceController#index</h2>
+
+<table border="1">
+  <tr>
+    <td>Kullanıcı Adı</td>
+    <td>Toplam Çalışma Saati</td>
+  </tr>
+  <% @grouped_time_entries.each do |name, hours| %>
+  <tr>
+    <td><%= name %></td>
+    <td><%= hours %></td>
+  </tr>
+  <% end %>
+</table>
