@@ -1,0 +1,28 @@
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'modal', :plugin => 'users_performance' %>
+<% end %>
+
+<h2>UsersPerformanceController#index</h2>
+
+<table border="1">
+  <tr>
+    <td>Kullanıcı Adı</td>
+    <td>Toplam Çalışma Saati</td>
+    <td>Çalışma Yüzdesi</td>
+  </tr>
+  <% @grouped_time_entries.each do |time_entry, hours| %>
+  <tr>
+    <% u = User.new %>
+    <% u.from_json(time_entry) %>
+    <td><%= link_to u.name, "##{u.name}" %></td>
+    <td><%= hours %></td>
+    <td>% <%= ((hours / @total_time)*100).round %></td>
+  </tr>
+  <aside id="<%= u.name %>" class="modal">
+      <div>
+          <h2><%= u.name %></h2>            
+          <a href="#close" title="Kapat">Kapat</a>
+      </div>
+  </aside>
+  <% end %>
+</table>
