@@ -10,19 +10,28 @@
     <td>Toplam Çalışma Saati</td>
     <td>Çalışma Yüzdesi</td>
   </tr>
-  <% @grouped_time_entries.each do |time_entry, hours| %>
+  <% @grouped_time_entries.each do |user, hours| %>
   <tr>
-    <% u = User.new %>
-    <% u.from_json(time_entry) %>
-    <td><%= link_to u.name, "##{u.name}" %></td>
+    <td><%= link_to user.name, "##{user.name}" %></td>
     <td><%= hours %></td>
     <td>% <%= ((hours / @total_time)*100).round %></td>
-  </tr>
-  <aside id="<%= u.name %>" class="modal">
-      <div>
-          <h2><%= u.name %></h2>
+    <td>
+      <!-- Pop-up Start -->
+      <aside id="<%= user.name %>" class="modal">
+        <div>
+          <h2><%= user.name %></h2>
+          <table border="1" id="<%= user.name %>">
+            <% @time_entries.each do |e| %>
+              <tr>
+                <%= "<td>##{ e.issue.to_s }</td><td>#{ e.hours }</td>".html_safe if e.user_id  == user.as_json['id']  %>
+              </tr>
+            <% end %>
+          </table>
           <a href="#close" title="Kapat">Kapat</a>
-      </div>
-  </aside>
+        </div>
+      </aside>
+      <!-- Pop-up Fnish -->
+    </td>
+  </tr>
   <% end %>
 </table>
