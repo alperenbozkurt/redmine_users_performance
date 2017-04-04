@@ -1,5 +1,6 @@
 <% content_for :header_tags do %>
-    <%= stylesheet_link_tag 'modal', :plugin => 'users_performance' %>
+  <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+  <%= stylesheet_link_tag 'modal', :plugin => 'users_performance' %>
 <% end %>
 
 <h2>UsersPerformanceController#index</h2>
@@ -35,3 +36,6 @@
   </tr>
   <% end %>
 </table>
+
+
+<%= pie_chart(@grouped_time_entries) %>
