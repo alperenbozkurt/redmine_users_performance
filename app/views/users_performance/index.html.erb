@@ -3,39 +3,56 @@
   <%= stylesheet_link_tag 'modal', :plugin => 'users_performance' %>
 <% end %>
 
-<h2>UsersPerformanceController#index</h2>
-
-<table border="1">
-  <tr>
-    <td>Kullanıcı Adı</td>
-    <td>Toplam Çalışma Saati</td>
-    <td>Çalışma Yüzdesi</td>
-  </tr>
-  <% @grouped_time_entries.each do |user, hours| %>
-  <tr>
-    <td><%= link_to user.name, "##{user.name}" %></td>
-    <td><%= hours %></td>
-    <td>% <%= ((hours / @total_time)*100).round %></td>
-    <td>
-      <!-- Pop-up Start -->
-      <aside id="<%= user.name %>" class="modal">
-        <div>
-          <h2><%= user.name %></h2>
-          <table border="1" id="<%= user.name %>">
-            <% @time_entries.each do |e| %>
-              <tr>
-                <%= "<td>##{ e.issue.to_s }</td><td>#{ e.hours }</td>".html_safe if e.user_id  == user.as_json['id']  %>
-              </tr>
-            <% end %>
-          </table>
-          <a href="#close" title="Kapat">Kapat</a>
-        </div>
-      </aside>
-      <!-- Pop-up Fnish -->
-    </td>
-  </tr>
-  <% end %>
-</table>
-
+<h2>Kullanıcıların Performansı</h2>
 
 <%= pie_chart(@grouped_time_entries) %>
+
+<hr>
+
+<% if @grouped_time_entries.any? %>
+  <%= form_tag({}) do %>
+    <table class="list issues">
+      <thead><tr>
+      <th>Kullanıcı Adı</th>
+      <th>Toplam Saat</th>
+      <th>Yüzde</th>
+      <th></th>
+      </tr></thead>
+      <tbody>
+      <% @grouped_time_entries.each do |user, hours| %>
+        <tr id="user-<%= user.as_json['id'] %>" class="hascontextmenu <%= cycle('odd', 'even') %>">
+          <td class="userName"><%= link_to user.name, "##{user.name}" %></td>
+          <td class="hours"><%= hours %></td>
+          <td class="percent">% <%= ((hours / @total_time)*100).round %></td>
+          <td>
+            <!-- Pop-up Start -->
+            <aside id="<%= user.name %>" class="modal">
+              <div>
+                <h2><%= user.name %></h2>
+                <table class="list issues">
+                  <thead><tr>
+                  <th>İş</th>
+                  <th>Saat</th>
+                  </tr></thead>
+                  <tbody>
+                  <% @time_entries.each do |e| %>
+                    <% if e.user_id  == user.as_json['id'] %>
+                      <tr id="time_entry-<%= e.issue.id %>" class="hascontextmenu <%= cycle('odd', 'even') %>">
+                        <%= "<td>##{ e.issue.to_s }</td><td>#{ e.hours }</td>".html_safe %>
+                      </tr>
+                      <% end %>
+                  <% end %>
+                </table>
+                <a href="#close" title="Kapat">Kapat</a>
+              </div>
+            </aside>
+            <!-- Pop-up Fnish -->
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% else %>
+  <p class="nodata"><%= "Veri Yok" %></p>
+<% end %>
