@@ -31,16 +31,22 @@
                 <h2><%= user.name %></h2>
                 <table class="list issues">
                   <thead><tr>
-                  <th>İş</th>
-                  <th>Saat</th>
+                    <th>İş</th>
+                    <th>Saat</th>
                   </tr></thead>
                   <tbody>
                   <% @time_entries.each do |e| %>
                     <% if e.user_id  == user.as_json['id'] %>
-                      <tr id="time_entry-<%= e.issue.id %>" class="hascontextmenu <%= cycle('odd', 'even') %>">
-                        <%= "<td>##{ e.issue.to_s }</td><td>#{ e.hours }</td>".html_safe %>
+                      <tr id="time_entry" class="hascontextmenu <%= cycle('odd', 'even') %>">
+                        <%= "<td>".html_safe %>
+                        <% if e.issue.to_s == "" %>
+                          <%= "Silinmiş İş" %>
+                        <% else %>
+                          <%= link_to e.issue.to_s, issue_path(e.issue) %>
+                        <% end %>
+                        <%= "</td><td>#{ e.hours }</td>".html_safe %>
                       </tr>
-                      <% end %>
+                    <% end %>
                   <% end %>
                 </table>
                 <a href="#close" title="Kapat">Kapat</a>
