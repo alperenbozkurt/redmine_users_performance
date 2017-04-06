@@ -1,4 +1,4 @@
-Redmine::Plugin.register :users_performance do
+Redmine::Plugin.register :redmine_users_performance do
   name 'Users Performance Plugin'
   author 'Alperen Bozkurt'
   description 'A redmine plugin that graphically shows the time entries of users'
