@@ -1,0 +1,4 @@
+<p>
+  <label><%= t(:chart_type) %></label>
+  <%= select_tag 'settings[chart_type]', options_for_select([ [t(:pie_chart),"pie_chart"], [t(:column_chart),"column_chart"], [t(:bar_chart),"bar_chart"] ], @settings['chart_type']) %>
+</p>

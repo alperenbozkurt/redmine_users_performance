@@ -9,3 +9,7 @@ en:
   table_title_time: "Hours"
   popup_close: "Close"
   no_data: "No Data"
+  chart_type: "Chart Type"
+  bar_chart: "Bar Chart"
+  pie_chart: "Pie Chart"
+  column_chart: "Column Chart"

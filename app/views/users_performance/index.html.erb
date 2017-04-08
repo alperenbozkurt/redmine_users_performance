@@ -5,60 +5,58 @@
 
 <h2><%= t('users_performance') %></h2>
 
-<%= pie_chart(@grouped_time_entries) %>
+<%= eval(Setting.plugin_redmine_users_performance[:chart_type] + "(@grouped_time_entries)") %>
 
 <hr>
 
 <% if @grouped_time_entries.any? %>
-  <%= form_tag({}) do %>
-    <table class="list issues">
-      <thead><tr>
-      <th><%= t(:user_name) %></th>
-      <th><%= t(:total_time) %></th>
-      <th><%= t(:percent) %></th>
-      <th></th>
-      </tr></thead>
-      <tbody>
-      <% @grouped_time_entries.each do |user, hours| %>
-        <tr id="user-<%= user.as_json['id'] %>" class="hascontextmenu <%= cycle('odd', 'even') %>">
-          <td class="userName"><%= link_to user.name, "##{user.name}" %></td>
-          <td class="hours"><%= hours %></td>
-          <td class="percent">% <%= ((hours / @total_time)*100).round %></td>
-          <td>
-            <!-- Pop-up Start -->
-            <aside id="<%= user.name %>" class="modal">
-              <div>
-                <h2><%= user.name %></h2>
-                <table class="list issues">
-                  <thead><tr>
-                    <th><%= t(:table_title_issue) %></th>
-                    <th><%= t(:table_title_time) %></th>
-                  </tr></thead>
-                  <tbody>
-                  <% @time_entries.each do |e| %>
-                    <% if e.user_id  == user.as_json['id'] %>
-                      <tr id="time_entry" class="hascontextmenu <%= cycle('odd', 'even') %>">
-                        <%= "<td>".html_safe %>
-                        <% if e.issue.to_s == "" %>
-                          <%= l(:deleted_issue) %>
-                        <% else %>
-                          <%= link_to e.issue.to_s, issue_path(e.issue) %>
-                        <% end %>
-                        <%= "</td><td>#{ e.hours }</td>".html_safe %>
-                      </tr>
-                    <% end %>
+  <table class="list issues">
+    <thead><tr>
+    <th><%= t(:user_name) %></th>
+    <th><%= t(:total_time) %></th>
+    <th><%= t(:percent) %></th>
+    <th></th>
+    </tr></thead>
+    <tbody>
+    <% @grouped_time_entries.each do |user, hours| %>
+      <tr id="user-<%= user.as_json['id'] %>" class="hascontextmenu <%= cycle('odd', 'even') %>">
+        <td class="userName"><%= link_to user.name, "##{user.name}" %></td>
+        <td class="hours"><%= hours %></td>
+        <td class="percent">% <%= ((hours / @total_time)*100).round %></td>
+        <td>
+          <!-- Pop-up Start -->
+          <aside id="<%= user.name %>" class="modal">
+            <div>
+              <h2><%= user.name %></h2>
+              <table class="list issues">
+                <thead><tr>
+                  <th><%= t(:table_title_issue) %></th>
+                  <th><%= t(:table_title_time) %></th>
+                </tr></thead>
+                <tbody>
+                <% @time_entries.each do |e| %>
+                  <% if e.user_id  == user.as_json['id'] %>
+                    <tr id="time_entry" class="hascontextmenu <%= cycle('odd', 'even') %>">
+                      <%= "<td>".html_safe %>
+                      <% if e.issue.to_s == "" %>
+                        <%= l(:deleted_issue) %>
+                      <% else %>
+                        <%= link_to e.issue.to_s, issue_path(e.issue) %>
+                      <% end %>
+                      <%= "</td><td>#{ e.hours }</td>".html_safe %>
+                    </tr>
                   <% end %>
-                </table>
-                <a href="#close" title="<%= t(:popup_close) %>"><%= t(:popup_close) %></a>
-              </div>
-            </aside>
-            <!-- Pop-up Fnish -->
-          </td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  <% end %>
+                <% end %>
+              </table>
+              <a href="#close" title="<%= t(:popup_close) %>"><%= t(:popup_close) %></a>
+            </div>
+          </aside>
+          <!-- Pop-up Fnish -->
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 <% else %>
   <p class="nodata"><%= t(:no_data) %></p>
 <% end %>

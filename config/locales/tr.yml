@@ -8,3 +8,7 @@ tr:
   table_title_time: "Saat"
   popup_close: "Kapat"
   no_data: "Veri Yok"
+  chart_type: "Grafik Türü"
+  bar_chart: "Çubuk Grafiği"
+  pie_chart: "Pasta Dilimi"
+  column_chart: "Sütun Grafiği"

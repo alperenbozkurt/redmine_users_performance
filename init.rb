@@ -11,4 +11,8 @@ Redmine::Plugin.register :redmine_users_performance do
   project_module :users_performance do
     permission :users_performance, :users_performance => :index
   end
+
+
+  settings partial: 'settings/users_performance'
+
 end
