@@ -1,3 +1,11 @@
 # English strings go here for Rails i18n
 en:
-  # my_label: "My label"
+  users_performance: "Users Performance"
+  user_name: "User Name"
+  total_time: "Total Time"
+  percent: "Percent"
+  table_title_issue: "Issue"
+  deleted_issue: "(Deleted Issue)"
+  table_title_time: "Hours"
+  popup_close: "Close"
+  no_data: "No Data"

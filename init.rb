@@ -7,8 +7,8 @@ Redmine::Plugin.register :redmine_users_performance do
   author_url 'http://alperenbozkurt.net/'
 
 
-  menu :project_menu, :users_performance, { :controller => 'users_performance', :action => 'index' }, :caption => 'Kullanıcıların Performansı', :param => :project_id
-  project_module 'Kullanıcıların Performansı' do
-    permission 'Kullanıcıların Performansı', :users_performance => :index
+  menu :project_menu, :users_performance, { :controller => 'users_performance', :action => 'index' }, :caption => :users_performance, :param => :project_id
+  project_module :users_performance do
+    permission :users_performance, :users_performance => :index
   end
 end

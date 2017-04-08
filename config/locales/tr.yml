@@ -1,0 +1,10 @@
+tr:
+  users_performance: "Kullanıcıların Performansı"
+  user_name: "Kullanıcı Adı"
+  total_time: "Toplam Süre"
+  percent: "Yüzde"
+  table_title_issue: "İş"
+  deleted_issue: "(Silinmiş İş)"
+  table_title_time: "Saat"
+  popup_close: "Kapat"
+  no_data: "Veri Yok"

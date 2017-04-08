@@ -3,7 +3,7 @@
   <%= stylesheet_link_tag 'modal', :plugin => 'users_performance' %>
 <% end %>
 
-<h2>Kullanıcıların Performansı</h2>
+<h2><%= t('users_performance') %></h2>
 
 <%= pie_chart(@grouped_time_entries) %>
 
@@ -13,9 +13,9 @@
   <%= form_tag({}) do %>
     <table class="list issues">
       <thead><tr>
-      <th>Kullanıcı Adı</th>
-      <th>Toplam Saat</th>
-      <th>Yüzde</th>
+      <th><%= t(:user_name) %></th>
+      <th><%= t(:total_time) %></th>
+      <th><%= t(:percent) %></th>
       <th></th>
       </tr></thead>
       <tbody>
@@ -31,8 +31,8 @@
                 <h2><%= user.name %></h2>
                 <table class="list issues">
                   <thead><tr>
-                    <th>İş</th>
-                    <th>Saat</th>
+                    <th><%= t(:table_title_issue) %></th>
+                    <th><%= t(:table_title_time) %></th>
                   </tr></thead>
                   <tbody>
                   <% @time_entries.each do |e| %>
@@ -40,7 +40,7 @@
                       <tr id="time_entry" class="hascontextmenu <%= cycle('odd', 'even') %>">
                         <%= "<td>".html_safe %>
                         <% if e.issue.to_s == "" %>
-                          <%= "Silinmiş İş" %>
+                          <%= l(:deleted_issue) %>
                         <% else %>
                           <%= link_to e.issue.to_s, issue_path(e.issue) %>
                         <% end %>
@@ -49,7 +49,7 @@
                     <% end %>
                   <% end %>
                 </table>
-                <a href="#close" title="Kapat">Kapat</a>
+                <a href="#close" title="<%= t(:popup_close) %>"><%= t(:popup_close) %></a>
               </div>
             </aside>
             <!-- Pop-up Fnish -->
@@ -60,5 +60,5 @@
     </table>
   <% end %>
 <% else %>
-  <p class="nodata"><%= "Veri Yok" %></p>
+  <p class="nodata"><%= t(:no_data) %></p>
 <% end %>
