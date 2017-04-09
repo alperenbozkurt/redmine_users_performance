@@ -22,7 +22,7 @@
       <tr id="user-<%= user.as_json['id'] %>" class="hascontextmenu <%= cycle('odd', 'even') %>">
         <td class="userName"><%= link_to user.name, "##{user.name}" %></td>
         <td class="hours"><%= hours %></td>
-        <td class="percent">% <%= ((hours / @total_time)*100).round %></td>
+        <td class="percent">% <%= ((hours / @total_time)*100).round(1) %></td>
         <td>
           <!-- Pop-up Start -->
           <aside id="<%= user.name %>" class="modal">
@@ -39,7 +39,7 @@
                     <tr id="time_entry" class="hascontextmenu <%= cycle('odd', 'even') %>">
                       <%= "<td>".html_safe %>
                       <% if e.issue.to_s == "" %>
-                        <%= l(:deleted_issue) %>
+                        <%= t(:deleted_issue) %>
                       <% else %>
                         <%= link_to e.issue.to_s, issue_path(e.issue) %>
                       <% end %>
