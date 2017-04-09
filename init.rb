@@ -13,6 +13,6 @@ Redmine::Plugin.register :redmine_users_performance do
   end
 
 
-  settings partial: 'settings/users_performance'
+  settings default: {'chart_type' => 'bar_chart'}, partial: 'settings/users_performance'
 
 end

@@ -8,7 +8,7 @@ Users Performance, a redmine plugin that graphically shows the time entries of u
 `cd {REDMINE_ROOT}`
 -  Copy the plugin from GitHub.
 `git clone https://github.com/alperenbozkurt/redmine_users_performance.git plugins/redmine_users_performance`
-(Or download this repository and extract to `{REDMINE_ROOT}/plugins/` folder)
+(Or download this repository and extract to `{REDMINE_ROOT}/plugins/` folder.Change folder name to `redmine_users_performance`.)
 - Update the Gemfile.lock file.
 `bundle install`
 - Restart Redmine.

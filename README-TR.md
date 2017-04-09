@@ -9,7 +9,7 @@ Users performance, kullanıcıların zaman girişlerini (time entries) grafiksel
 `cd {REDMINE_KÖKDİZİNİ}`
 - Eklentiyi Github'dan kopyalayınız.
 `git clone https://github.com/alperenbozkurt/redmine_users_performance.git plugins/redmine_users_performance`
-(Veya depoyu indirin ve `{REDMINE_KÖKDİZİNİ}/plugins/` dizinine çıkartınız.)
+(Veya depoyu indirin ve `{REDMINE_KÖKDİZİNİ}/plugins/` dizinine çıkartınız. Klasörün ismini `redmine_users_performance` olarak değiştiriniz. )
 - Gemfile.lock dosyasını güncelleyiniz.
 `bundle install`
 - Redmine'ı yeniden başlatın.
