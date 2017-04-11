@@ -1,0 +1,11 @@
+# Simplified Chinese strings go here for Rails i18n
+zh:
+  users_performance: "Users Performance"
+  user_name: "用户名"
+  total_time: "总计工时"
+  percent: "占比"
+  table_title_issue: "任务"
+  deleted_issue: "(已删除任务)"
+  table_title_time: "小时"
+  popup_close: "关闭"
+  no_data: "无数据"
