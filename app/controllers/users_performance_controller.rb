@@ -8,7 +8,7 @@ class UsersPerformanceController < ApplicationController
     @total_time = 0
     @time_entries.each do |e| # Time entries of users are grouped
       @grouped_time_entries.has_key?(e.user) ? @grouped_time_entries[e.user] = @grouped_time_entries[e.user] + e.hours : @grouped_time_entries[e.user] = e.hours
-      @total_time = @total_time + e.hours # Total Time calculated 
+      @total_time = @total_time + e.hours # Total Time calculated
     end
   end
 end
